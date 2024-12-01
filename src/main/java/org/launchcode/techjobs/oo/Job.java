@@ -47,6 +47,25 @@ public class Job {
         return Objects.hashCode(id);
     }
 
+    @Override
+    public String toString() {
+        String lineSeparator = System.lineSeparator();
+        String name = this.getName();
+        String employer = this.getEmployer().toString();
+        String location = this.getLocation().toString();
+        String positionType = this.getPositionType().toString();
+        String coreCompetency = this.getCoreCompetency().toString();
+
+        if (employer.isEmpty()) {
+            employer = "Data not available";
+        }
+
+        return lineSeparator + "ID: " + this.getId() + lineSeparator + "Name: " + this.getName() + lineSeparator +
+                "Employer: " + employer + lineSeparator + "Location: " + this.getLocation() + lineSeparator +
+                "Position Type: " + this.getPositionType() + lineSeparator + "Core Competency: " + this.getCoreCompetency()
+                + lineSeparator;
+    }
+
     public int getId() {
         return id;
     }
