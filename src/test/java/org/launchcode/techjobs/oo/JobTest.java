@@ -63,10 +63,18 @@ public class JobTest {
     public void testToStringHandlesEmptyField() {
         String lineSeparator = System.lineSeparator();
         Job job1 = new Job();
-        job1 = new Job("Product tester", new Employer(""), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        job1 = new Job("Product tester", new Employer(), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         String job1Data = lineSeparator + "ID: " + job1.getId() + lineSeparator + "Name: Product tester" +
-                lineSeparator + "Employer: Data not available" + lineSeparator + "Location: Desert" +
+                lineSeparator + "Employer: Data not available" + lineSeparator + "Location: Data not available" +
                 lineSeparator + "Position Type: Quality control" + lineSeparator + "Core Competency: Persistence" + lineSeparator;
+        assertEquals(job1.toString(), job1Data);
+    }
+
+    @Test
+    public void testJobOnlyContainsDataForIdField() {
+        Job job1 = new Job();
+        job1 = new Job("", new Employer(), new Location(), new PositionType(), new CoreCompetency());
+        String job1Data = "OOPS! This job does not seem to exist.";
         assertEquals(job1.toString(), job1Data);
     }
 }

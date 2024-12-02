@@ -51,19 +51,18 @@ public class Job {
     public String toString() {
         String lineSeparator = System.lineSeparator();
         String name = this.getName();
-        String employer = this.getEmployer().toString();
-        String location = this.getLocation().toString();
-        String positionType = this.getPositionType().toString();
-        String coreCompetency = this.getCoreCompetency().toString();
+        String employer = (this.getEmployer().toString() == null) || this.getEmployer().toString().isEmpty() ? "Data not available" : this.getEmployer().toString();
+        String location = (this.getLocation().toString() == null) || this.getLocation().toString().isEmpty() ? "Data not available" : this.getLocation().toString();
+        String positionType = (this.getPositionType().toString() == null) || this.getPositionType().toString().isEmpty() ? "Data not available" : this.getPositionType().toString();
+        String coreCompetency = (this.getCoreCompetency().toString() == null) || this.getCoreCompetency().toString().isEmpty() ? "Data not available" : this.getCoreCompetency().toString();
 
-        if (employer.isEmpty()) {
-            employer = "Data not available";
-        }
+        String jobData = (name == null || name.isEmpty()) && (employer.equals("Data not available")) && (location.equals("Data not available"))
+                && (positionType.equals("Data not available")) && (coreCompetency.equals("Data not available")) ? "OOPS! This job does not seem to exist." :
+                lineSeparator + "ID: " + this.getId() + lineSeparator + "Name: " + name + lineSeparator +
+                "Employer: " + employer + lineSeparator + "Location: " + location + lineSeparator +
+                "Position Type: " + positionType + lineSeparator + "Core Competency: " + coreCompetency + lineSeparator;
 
-        return lineSeparator + "ID: " + this.getId() + lineSeparator + "Name: " + this.getName() + lineSeparator +
-                "Employer: " + employer + lineSeparator + "Location: " + this.getLocation() + lineSeparator +
-                "Position Type: " + this.getPositionType() + lineSeparator + "Core Competency: " + this.getCoreCompetency()
-                + lineSeparator;
+        return jobData;
     }
 
     public int getId() {
