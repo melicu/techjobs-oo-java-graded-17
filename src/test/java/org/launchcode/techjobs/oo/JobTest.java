@@ -32,20 +32,17 @@ public class JobTest {
 
     @Test
     public void testJobsForEquality() {
-        Job job1 = new Job();
-        Job job2 = new Job();
-        job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        job2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job job2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         assertNotEquals(job1, job2);
     }
 
     @Test
     public void testToStringStartsAndEndsWithNewLine() {
         String lineSeparator = System.lineSeparator();
-        Job job1 = new Job();
-        job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        assertTrue(job1.toString().startsWith("\r\n"));
-        assertTrue(job1.toString().endsWith("\r\n"));
+        Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        assertTrue(job1.toString().startsWith(lineSeparator));
+        assertTrue(job1.toString().endsWith(lineSeparator));
     }
 
     @Test
@@ -62,8 +59,7 @@ public class JobTest {
     @Test
     public void testToStringHandlesEmptyField() {
         String lineSeparator = System.lineSeparator();
-        Job job1 = new Job();
-        job1 = new Job("Product tester", new Employer(), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job job1 = new Job("Product tester", new Employer(), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         String job1Data = lineSeparator + "ID: " + job1.getId() + lineSeparator + "Name: Product tester" +
                 lineSeparator + "Employer: Data not available" + lineSeparator + "Location: Data not available" +
                 lineSeparator + "Position Type: Quality control" + lineSeparator + "Core Competency: Persistence" + lineSeparator;
@@ -72,8 +68,7 @@ public class JobTest {
 
     @Test
     public void testJobOnlyContainsDataForIdField() {
-        Job job1 = new Job();
-        job1 = new Job("", new Employer(), new Location(), new PositionType(), new CoreCompetency());
+        Job job1 = new Job("", new Employer(), new Location(), new PositionType(), new CoreCompetency());
         String job1Data = "OOPS! This job does not seem to exist.";
         assertEquals(job1.toString(), job1Data);
     }
